@@ -29,7 +29,7 @@ export default function LoginScreen() {
   const onLogin = () => {
     if (email !== "" && password !== "") {
       Keyboard.dismiss();
-      console.log(email, password);
+      console.log({"email": email, "password": password});
     } else {
       setIsShowKeyboard(false);
       return alert("Fill in all the fields!!!");
