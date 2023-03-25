@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
@@ -29,7 +29,7 @@ export default function LoginScreen() {
   const onLogin = () => {
     if (email !== "" && password !== "") {
       Keyboard.dismiss();
-      console.log({"email": email, "password": password});
+      console.log({ email: email, password: password });
     } else {
       setIsShowKeyboard(false);
       return alert("Fill in all the fields!!!");
@@ -41,7 +41,7 @@ export default function LoginScreen() {
   const toggleHidePassword = () => {
     setHidePassword(!hidePassword);
   };
-  
+
   const [orientation, setOrientation] = useState("portrait");
 
   useEffect(() => {
@@ -120,7 +120,7 @@ export default function LoginScreen() {
                     ...styles.button,
                     marginTop: orientation === "portrait" ? 27 : 4,
                   }}
-                  activeOpacity={0.7}
+                  activeOpacity={0.6}
                   onPress={onLogin}
                 >
                   <Text style={styles.btnTitle}>Login</Text>
@@ -128,11 +128,12 @@ export default function LoginScreen() {
                 <View>
                   <Text style={styles.loginText}>
                     Don't have an account?{" "}
-                    <Text
-                      style={{ color: "#FF6C00" }}
+                    <TouchableOpacity
+                      activeOpacity={0.6}
+                      onPress={() => navigation.navigate("Registration")}
                     >
-                      Register
-                    </Text>
+                      <Text style={{ color: "#FF6C00" }}>Register</Text>
+                    </TouchableOpacity>
                   </Text>
                 </View>
               </View>
@@ -142,8 +143,7 @@ export default function LoginScreen() {
       </View>
     </TouchableWithoutFeedback>
   );
-};
-
+}
 
 const styles = StyleSheet.create({
   wrapper: {

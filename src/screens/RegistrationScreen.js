@@ -16,7 +16,7 @@ import {
 
 const windowWidth = Dimensions.get("window").width;
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({navigation}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -151,7 +151,12 @@ export default function RegistrationScreen() {
                 <View>
                   <Text style={styles.loginText}>
                     Already have an account?{" "}
-                    <Text style={{ color: "#FF6C00" }}>Log in</Text>
+                    <TouchableOpacity
+                      activeOpacity={0.6}
+                      onPress={() => navigation.navigate("Login")}
+                    >
+                      <Text style={{ color: "#FF6C00" }}>Log in</Text>
+                    </TouchableOpacity>
                   </Text>
                 </View>
               </View>
