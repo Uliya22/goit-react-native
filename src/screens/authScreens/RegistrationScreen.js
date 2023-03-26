@@ -34,6 +34,7 @@ export default function RegistrationScreen({navigation}) {
   const onRegister = () => {
     if (name !== "" && email !== "" && password !== "") {
       Keyboard.dismiss();
+      navigation.navigate("Home");
       console.log({"name":name, "email": email, "password": password});
     } else {
       setIsShowKeyboard(false);
@@ -67,7 +68,7 @@ export default function RegistrationScreen({navigation}) {
       <View style={styles.wrapper}>
         <ImageBackground
           style={styles.image}
-          source={require("../images/photoBG.jpg")}
+          source={require("../../images/photoBG.jpg")}
         >
           <View style={styles.container}>
             <KeyboardAvoidingView
@@ -77,7 +78,7 @@ export default function RegistrationScreen({navigation}) {
                 <View>
                   <Image
                     style={styles.photo}
-                    source={require("../images/avatar.jpg")}
+                    source={require("../../images/avatar.jpg")}
                   />
                 </View>
               </View>
@@ -148,17 +149,15 @@ export default function RegistrationScreen({navigation}) {
                 >
                   <Text style={styles.btnTitle}>Register</Text>
                 </TouchableOpacity>
-                <View>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => navigation.navigate("Login")}
+                >
                   <Text style={styles.loginText}>
                     Already have an account?{" "}
-                    <TouchableOpacity
-                      activeOpacity={0.6}
-                      onPress={() => navigation.navigate("Login")}
-                    >
                       <Text style={{ color: "#FF6C00" }}>Log in</Text>
-                    </TouchableOpacity>
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </KeyboardAvoidingView>
           </View>

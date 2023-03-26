@@ -29,11 +29,13 @@ export default function LoginScreen({ navigation }) {
   const onLogin = () => {
     if (email !== "" && password !== "") {
       Keyboard.dismiss();
+      navigation.navigate("Home");
       console.log({ email: email, password: password });
     } else {
       setIsShowKeyboard(false);
       return alert("Fill in all the fields!!!");
     }
+    
     setEmail("");
     setPassword("");
   };
@@ -61,7 +63,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.wrapper}>
         <ImageBackground
           style={styles.image}
-          source={require("../images/photoBG.jpg")}
+          source={require("../../images/photoBG.jpg")}
         >
           <View style={styles.container}>
             <KeyboardAvoidingView
@@ -114,7 +116,6 @@ export default function LoginScreen({ navigation }) {
                     </TouchableOpacity>
                   )}
                 </View>
-
                 <TouchableOpacity
                   style={{
                     ...styles.button,
@@ -125,17 +126,17 @@ export default function LoginScreen({ navigation }) {
                 >
                   <Text style={styles.btnTitle}>Login</Text>
                 </TouchableOpacity>
-                <View>
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  onPress={() => navigation.navigate("Registration")}
+                >
                   <Text style={styles.loginText}>
                     Don't have an account?{" "}
-                    <TouchableOpacity
-                      activeOpacity={0.6}
-                      onPress={() => navigation.navigate("Registration")}
-                    >
-                      <Text style={{ color: "#FF6C00" }}>Register</Text>
-                    </TouchableOpacity>
+                    <Text style={{ ...styles.loginText, color: "#FF6C00" }}>
+                      Register
+                    </Text>
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </KeyboardAvoidingView>
           </View>

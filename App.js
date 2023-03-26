@@ -2,17 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View } from "react-native";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import RegistrationScreen from "./src/screens/RegistrationScreen";
-import LoginScreen from "./src/screens/LoginScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator();
+import { NavigationContainer } from "@react-navigation/native";
+import useRoute from "./src/router";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
+  const routing = useRoute(false);
 
   useEffect(() => {
     const prepare = async () => {
@@ -43,28 +41,7 @@ export default function App() {
 
   return (
     <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="Login"
-            component={LoginScreen}
-          />
-          <Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name="Registration"
-            component={RegistrationScreen}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <NavigationContainer>{routing}</NavigationContainer>
     </View>
-    // <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
-    // {/* <RegistrationScreen /> */}
-    // <LoginScreen />
-    // </View>
   );
 }
